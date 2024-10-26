@@ -1,0 +1,166 @@
+//Script used to assign loadouts to units spawning using Trooper preset. Just select all units in preset, right click, select from context menu "Attributes" and drop it in innit box
+
+_Role = roleDescription this;
+
+
+switch (_Role) do
+{
+	case "Lead Zeus@Zeus Team": { this setUnitLoadout(missionConfigFile >> "c_trooper"); };
+	case "Co-Zeus": { this setUnitLoadout(missionConfigFile >> "c_trooper"); };
+	case "Clone Trooper": { this setUnitLoadout(missionConfigFile >> "c_trooper"); };
+	case "Reservist": { this setUnitLoadout(missionConfigFile >> "c_trooper"); };
+	case "Visitor": { this setUnitLoadout(missionConfigFile >> "c_reg"); };
+	case "Recruit": { this setUnitLoadout(missionConfigFile >> "c_recruit"); };
+	case "Clone Pilot Sergeant@Casper Squadron": { this setUnitLoadout(missionConfigFile >> "c_sergeant_pilot"); };
+	case "Clone Pilot Corporal": { this setUnitLoadout(missionConfigFile >> "c_corporal_pilot"); };
+	case "Clone Pilot": { this setUnitLoadout(missionConfigFile >> "c_trooper_pilot"); };
+	case "Clone Sergeant@Devil Squad": { this setUnitLoadout(missionConfigFile >> "c_sergeant"); };
+	case "Clone Sergeant@Reaper Squad": { this setUnitLoadout(missionConfigFile >> "c_sergeant"); };
+	case "Clone Sergeant@Phantom Squad": { this setUnitLoadout(missionConfigFile >> "c_sergeant"); };
+	case "Clone Corporal": { this setUnitLoadout(missionConfigFile >> "c_corporal"); };
+	case "Clone Sergeant Major": { this setUnitLoadout(missionConfigFile >> "c_sergeant_major"); };
+	case "Clone Lieutanant": { this setUnitLoadout(missionConfigFile >> "c_lieutenant"); };
+	case "Clone Captain": { this setUnitLoadout(missionConfigFile >> "c_captain"); };
+	case "Clone Commander@Division Lead": { this setUnitLoadout(missionConfigFile >> "c_commander"); };
+	
+	default { this setUnitLoadout(missionConfigFile >> "c_reg"); };
+};
+
+
+//Script to open arsenal from whatever container. It restricts arsenal contents to things declared as "whiteList" array in description.ext
+
+[this] call{ params [_this];
+ this addAction["Open ACE Arsenal",   
+ {     
+  private _whiteList = getArray (missionConfigFile >> "arsenalList" >> "whiteList");
+  _cont = _this select 0;    
+  [_cont, _whiteList] call ace_arsenal_fnc_addVirtualItems;     
+  [_cont, player] call ace_arsenal_fnc_openBox; 
+   }];};  
+
+
+
+//Classes used to allow units to spawn with predefined loadout. Should be in description.ext file
+
+class c_commander
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CMD_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_captain
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CPT_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_lieutenant
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CL_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_sergeant_major
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CSM_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+
+class c_sergeant
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconOfficer", "GD_CS_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_corporal
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Reg_Backpack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconNCO", "GD_CP_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+
+class c_trooper
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Reg_Backpack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestSuspender", "GD_CT_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+
+class c_sergeant_pilot
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconOfficer", "GD_CXS_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_corporal_pilot
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconNCO", "GD_CXP_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_trooper_pilot
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestRecon", "GD_CX_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_recruit
+{
+  uniformClass = "GD_CR_Uniform";
+  backpack = "";
+  weapons[] = {"JLTS_DC15S", "SWLW_DC15SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"SWLB_clone_basic_armor", "GD_CR_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_reg
+{
+  uniformClass = "SWLB_clone_uniform";
+  backpack = "SWLB_clone_backpack";
+  weapons[] = {"Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"SWLB_clone_basic_armor", "SWLB_clone_P1_helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};

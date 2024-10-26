@@ -1,0 +1,41 @@
+DNT_EventHandlers.sqf
+- added DNT_FortifyDeployHandler
+- added DNT_fortifySpendScrap - budget and engineer not preventing from building
+
+initServer.sqf
+- added selection of objects to ace_fortify_fnc_registerObjects
+
+cba_settings.sqf
+- ace_repair_miscRepairTime = 7; (was 10)
+- ace_repair_timeCoefficientFullRepair = 0; (was 0.1)
+- ace_repair_wheelChangeTime = 7; (was 10)
+- ace_cargo_loadTimeCoefficient = 0.2; (was 0.5)
+- ace_fortify_timeMin = 1; (was 1.5)
+
+initServer.sqf
+- added call DNT_fortifyDeployHandler
+- changed fortify budget to dnt_scrapCount
+
+Supplies\DNT_fncCommon.sqf
+
+- DNT_vehicleDictionary added AT-RT to roster
+- DNT_storeSupplies - added [west, _quantity, false] call ace_fortify_fnc_updateBudget whenever scrap is stored to update budget accordingly
+- DNT_initSupplies - added call DNT_fortifyDeployHandler;
+- rebalanced cargo sizes and included PX-10
+- DNT_scrapFabricator rebalanced trade values for ammo and medicaments in 
+
+Utilities\DNT_fncCommon.sqf
+- DNT_phantomSpawn moved RHO shuttle and crate to altSpawn
+- reorganised the vics order
+
+initPlayerLocal.sqf
+- added call DNT_fortifySpendScrap;
+
+DNT_fncServer.sqf
+- added DNT_onFortifyServer
+
+description.ext
+- added laserbatteries, marksman bags, repeater and others
+
+
+

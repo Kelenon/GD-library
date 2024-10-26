@@ -1,0 +1,57 @@
+////22.03.2023
+
+//mission.sqm
+
+pushed script assignign loadouts at spawn outside of file to "ApplyLoadout.sqf"> It'll allow for more convieniant changes to loadouts in future
+
+
+////Before 01.02.2023
+
+//caspRespawn.sqf
+
+added - Invisible flagpole with var dirPole is present to apply correct rotation at which aircrafts will be spawned. If object is not present aircrafts will spawn at default rotation
+
+Code added
+private _var = missionNamespace getVariable "dirPole"; 
+		if (!isNil "_var") then {  //line strictly for RTZ files. 
+			_acDir = getDir dirPole;
+			_vic setDir _acDir;
+			};
+
+//onPlayerRespawn.sqf
+
+modified - added Casper script spawn capability to advisor team. Declared advisor variable for Advisor group
+
+Code changed from
+if ((group _newUnit == casper) && !(isNil "Haunter"))
+
+to
+
+if ((group _newUnit == casper) || (group _newUnit == advisor) && !(isNil "Haunter"))
+
+//description.ext
+
+added - classes for all loadouts 
+
+example
+
+class c_commander
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CMD_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+added an array whiteList containing list of items allowed in standard arsenals. 
+
+
+
+//added assignPerms.sqf 
+
+on TrooperPreset sign changed the code for adding/removing perms to execVM "assignPerms.sqf";
+
+Code now is executed from assignPerms.sqf file
+

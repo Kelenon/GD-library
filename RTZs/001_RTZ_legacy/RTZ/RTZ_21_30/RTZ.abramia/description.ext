@@ -1,0 +1,473 @@
+class RscSpawnDialog
+{
+	idd = -1;
+	access = -1;
+	movingEnable = false;
+	onLoad = "";
+	onUnload  = "";
+	enableSimulation = true;
+	controls[] = {};
+};
+class RscButton
+{
+	deletable = 0;
+	fade = 0;
+	access = 0;
+	type = 1;
+	text = "Test";
+	colorText[] = {1,1,1,1};
+	colorDisabled[] = {0,0,0,0.5};
+	colorBackground[] = {0,0,0,0.5};
+	colorBackgroundDisabled[] = {0,0,0,1};
+	colorBackgroundActive[] = {0,0,0,1};
+	colorFocused[] = {0,0,0,1};
+	colorShadow[] = {0,0,0,0};
+	colorBorder[] = {0,0,0,1};
+	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
+	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
+	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+	idc = -1;
+	style = 2;
+	x = (0.5 * safezoneW + safezoneX) - ((0.18375 * safezoneW) / 2);
+	y = 0.335185 * safezoneH + safezoneY;
+	w = 0.18375 * safezoneW;
+	h = 0.042 * safezoneH;
+	shadow = 0;
+	font = "RobotoCondensed";
+	sizeEx = 0.05;
+	url = "";
+	offsetX = 0;
+	offsetY = 0;
+	offsetPressedX = 0;
+	offsetPressedY = 0;
+	borderSize = 0;
+	action = "hint ""test""";
+};
+class RscPhantSpawnDialog: RscSpawnDialog
+{
+	idd = 100;
+	controls[] = 
+	{
+	    RscPhantButtonOne,
+		RscPhantButtonTwo,
+		RscPhantButtonThree,
+		RscPhantButtonFour,
+		RscPhantButtonFive,
+		RscPhantButtonSix,
+		RscPhantCloseButton
+	};
+	class RscPhantButtonOne: RscButton
+	{
+		text = "TX-130 (LS)";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW) - 0.1;
+		y = 0.4 * safezoneH + safezoneY;
+		action = "createVehicle [""GD_TX130"", ASLtoAGL (getPosASL phantSpawn)]; closeDialog 100;";
+	};
+	class RscPhantButtonTwo: RscButton
+	{
+		text = "TX-130 (3AS)";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = 0.4 * safezoneH + safezoneY;
+		action = "_sabre = createVehicle [""3as_saber_m1"", [0,0,0]]; _sabre setPosASL getPosASL phantSpawn; closeDialog 100;";
+	};
+	class RscPhantButtonThree: RscButton
+	{
+		text = "Repair Crate";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW) - 0.1;
+		y = (0.6 * safezoneH + safezoneY) - ((0.042 * safezoneH) / 2);
+		action = "createVehicle [""B_Slingload_01_Repair_F"", getPosATL phantSpawn]; closeDialog 100;";
+	};
+	class RscPhantButtonFour: RscButton
+	{
+		text = "Ammo Crate";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.6 * safezoneH + safezoneY) - ((0.042 * safezoneH) / 2);
+		action = "createVehicle [""B_Slingload_01_Ammo_F"", getPosATL phantSpawn]; closeDialog 100;";
+	};
+	class RscPhantButtonFive: RscButton
+	{
+		text = "Fuel Cannister";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW) - 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.021 * safezoneH) / 2);
+		action = "createVehicle [""717th_RefuelTank"", getPosATL phantSpawn]; closeDialog 100;";
+	};
+	class RscPhantButtonSix: RscButton
+	{
+		text = "Pandur";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.021 * safezoneH) / 2);
+		action = "createVehicle [""I_APC_Wheeled_03_cannon_F"", ASLtoAGL (getPosASL phantSpawn)]; closeDialog 100;";
+	};
+	class RscPhantCloseButton: RscButton
+	{
+		text = "Close";
+		x = (0.5 * safezoneW + safezoneX) - ((0.18375 * safezoneW) / 2);
+		y = (0.7 * safezoneH + safezoneY) - ((0.042 * safezoneH) / 2);
+		action = "closeDialog 100;";
+	};
+};
+class RscCaspSpawnDialog: RscSpawnDialog
+{
+	idd = 200;
+	controls[] = 
+	{
+	    RscCaspSpawnCheckBoxes,
+		RscCaspSpawnButtonOne,
+		RscCaspSpawnButtonTwo,
+		RscCaspSpawnButtonThree,
+		RscCaspSpawnButtonFour,
+		RscCaspSpawnButtonFive,
+		RscCaspSpawnButtonSix,
+		RscCaspSpawnButtonSeven,
+		RscCaspSpawnButtonEight,
+		RscCaspSpawnButtonNine,
+		RscCaspCloseSpawnButton
+	};
+	class RscCaspSpawnCheckBoxes
+	{
+		onLoad = "";
+
+		idc = 1001;
+		type = 7;
+		style = 2;
+
+		x = (0.5 * safezoneW + safezoneX) - 0.7;
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2);
+		w = 0.05 * safezoneW;
+		h = 0.4 * safezoneH;
+
+		colorText[] = {1, 0, 0, 1};
+		colorTextSelect[] = {0, 1, 0, 1};
+		colorBackground[] = {0,0,0,0.5};
+		colorSelectedBg[] = {0,0,0,0.5};
+		
+		font = "RobotoCondensed";
+		sizeEx = 0.05;
+		
+		onCheckBoxesSelChanged = "";
+		
+		columns = 1;
+		rows = 4;
+
+		strings[] = {"Pad 1","Pad 2","Pad 3","Pad 4"};
+		checked_strings[] = {"Pad 1","Pad 2","Pad 3","Pad 4"};
+		values[] = {0,1,2,3};
+		tooltips[] = {"","","",""};
+	};
+	class RscCaspSpawnButtonOne: RscButton
+	{
+		text = "LAAT/i";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW);
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.1 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""lsd_heli_laati""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonTwo: RscButton
+	{
+		text = "ARC-170";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.1 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3as_arc_170_red""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonThree: RscButton
+	{
+		text = "Y-Wing";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW);
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.3 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3AS_BTLB_Bomber""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonFour: RscButton
+	{
+		text = "Z-95";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.3 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3as_Z95_Republic""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonFive: RscButton
+	{
+		text = "LAAT/C";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW);
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.5 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3AS_LAATC""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonSix: RscButton
+	{
+		text = "V-19";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.5 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3as_V19_base""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonSeven: RscButton
+	{
+		text = "NU-Shuttle";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW);
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.7 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3AS_Nuclass""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonEight: RscButton
+	{
+		text = "Airbourne LAAT";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.7 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""lsd_heli_laati_ab""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspSpawnButtonNine: RscButton
+	{
+		text = "3AS LAAT";
+		x = (0.5 * safezoneW + safezoneX) - (0.18375 * safezoneW);
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.9 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "[""3AS_LAAT_mk1""] execVM ""caspRespawn.sqf""";
+	};
+	class RscCaspCloseSpawnButton: RscButton
+	{
+		text = "Close";
+		x = (0.5 * safezoneW + safezoneX) + 0.1;
+		y = (0.5 * safezoneH + safezoneY) - ((0.4 * safezoneH) / 2) + ((0.9 * safezoneH) / 2) - ((0.042 * safezoneH) / 2);
+		action = "closeDialog 200;";
+	};
+};
+class RscCaspRepairDialog: RscSpawnDialog
+{
+	idd = 300;
+	controls[] = 
+	{
+		RscCaspRepairCheckBoxes,
+		RscCaspRepairButton,
+		RscCaspCloseRepairButton
+	};
+	class RscCaspRepairCheckBoxes
+	{
+		onLoad = "";
+
+		idc = 1002;
+		type = 7;
+		style = 2;
+
+		x = (0.5 * safezoneW + safezoneX) - ((0.3 * safezoneW) / 2);
+		y = (0.5 * safezoneH + safezoneY) - ((0.3 * safezoneH) / 2) - (0.05 * safezoneH);
+		w = 0.3 * safezoneW;
+		h = 0.05 * safezoneH;
+
+		colorText[] = {1, 0, 0, 1};
+		colorTextSelect[] = {0, 1, 0, 1};
+		colorBackground[] = {0,0,0,0.5};
+		colorSelectedBg[] = {0,0,0,0.5};
+		
+		font = "RobotoCondensed";
+		sizeEx = 0.05;
+		
+		onCheckBoxesSelChanged = "";
+		
+		columns = 4;
+		rows = 1;
+
+		strings[] = {"Pad 1","Pad 2","Pad 3","Pad 4"};
+		checked_strings[] = {"Pad 1","Pad 2","Pad 3","Pad 4"};
+		values[] = {0,1,2,3};
+		tooltips[] = {"","","",""};
+	};
+	class RscCaspRepairButton: RscButton
+	{
+		text = "Rearm, Repair and Refuel";
+		w = 0.3 * safezoneW;
+		h = 0.05 * safezoneH;
+		x = (0.5 * safezoneW + safezoneX) - ((0.3 * safezoneW) / 2);
+		y = (0.5 * safezoneH + safezoneY) + ((0.05 * safezoneH) / 2) - (0.05 * safezoneH);
+		action = "execVM ""caspRepair.sqf""";
+	};
+	class RscCaspCloseRepairButton: RscButton
+	{
+		text = "Close";
+		w = 0.3 * safezoneW;
+		h = 0.05 * safezoneH;
+		x = (0.5 * safezoneW + safezoneX) - ((0.3 * safezoneW) / 2);
+		y = (0.5 * safezoneH + safezoneY) + ((0.3 * safezoneW) / 2) - (0.05 * safezoneH);
+		action = "closeDialog 300;";
+	};
+};
+class RscCaspTrackingSet: RscSpawnDialog
+{
+	idd = 400;
+	controls[] = 
+	{
+	    RscCaspNameSet,
+		RscCaspNameFinish
+	};
+	class RscCaspNameSet
+	{
+		type = 2;
+		idc = 1003;
+		style = 2;
+		
+		x = (0.5 * safezoneW + safezoneX) - ((0.3 * safezoneW) / 2);
+		y = (0.5 * safezoneH + safezoneY) - ((0.05 * safezoneH) / 2);
+		w = 0.3 * safezoneW;
+		h = 0.05 * safezoneH;
+		
+		colorBackground[] = {0,0,0,0.5};
+		colorText[] = {1,1,1,1};
+		colorDisabled[] = {0,0,0,0.5};
+		colorSelection[] =
+		{
+			"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",
+			"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",
+			"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",
+			1
+		};
+		
+		autocomplete = "";
+		text = "Enter Callsign";
+		size = 0.2;
+		font = "RobotoCondensed";
+		sizeEx = 0.05;
+		canModify = 1;
+	};
+	class RscCaspNameFinish: RscButton
+	{
+		text = "Enter";
+		w = 0.3 * safezoneW;
+		h = 0.05 * safezoneH;
+		x = (0.5 * safezoneW + safezoneX) - ((0.3 * safezoneW) / 2);
+		y = (0.7 * safezoneH + safezoneY);
+		action = "_callsign = ctrlText 1003;player setVariable ['KRPT_callsign', _callsign, true];closeDialog 400;";
+	};
+};
+
+//Classes used to allow units to spawn with predefined loadout. Should be in description.ext file
+
+class c_commander
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CMD_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_captain
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CPT_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_lieutenant
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CL_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_sergeant_major
+{
+  uniformClass = "GD_CO_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestOfficer", "GD_CSM_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+
+class c_sergeant
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconOfficer", "GD_CS_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_corporal
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Reg_Backpack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconNCO", "GD_CP_Helmet", "SWLB_clone_rangefinder_HUD", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+
+class c_trooper
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Reg_Backpack";
+  weapons[] = {"JLTS_DC15S", "JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestSuspender", "GD_CT_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+
+class c_sergeant_pilot
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconOfficer", "GD_CXS_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_corporal_pilot
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestReconNCO", "GD_CXP_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_trooper_pilot
+{
+  uniformClass = "GD_CT_Uniform";
+  backpack = "GD_Rto_minipack";
+  weapons[] = {"JLTS_DC17SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"JLTS_CloneVestRecon", "GD_CX_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_recruit
+{
+  uniformClass = "GD_CR_Uniform";
+  backpack = "";
+  weapons[] = {"JLTS_DC15S", "SWLW_DC15SA", "Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"SWLB_clone_basic_armor", "GD_CR_Helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+class c_reg
+{
+  uniformClass = "SWLB_clone_uniform";
+  backpack = "SWLB_clone_backpack";
+  weapons[] = {"Throw", "Put"};
+  magazines[] = {};
+  items[] = {};
+  linkedItems[] = {"SWLB_clone_basic_armor", "SWLB_clone_P1_helmet", "", "ItemMap", "ItemCompass", "ItemWatch", "", "", "", "", "", "", "", ""};
+};
+
+//For arsenal restriction purpose
+
+class arsenalList
+{
+    whiteList[] = {"Poly_Knife","Launch_Camera","Poly_HH16","MiniMag","B_UavTerminal","I_E_UavTerminal","O_UavTerminal","I_UavTerminal","C_UavTerminal","FIR_PDU","Dioxis_Grenade","WarCrime_Grenade","Poly_RiotControl","MedicalOrbitalResupply_Mag","FullOrbitalResupply_Mag","AmmoOrbitalResupply_Mag","Poly_ImpactDetonator","Droid_Popper_Mag","CommandoSupply_Mag","Poly_KeyCoreDetonator","Poly_ThermalDetonator","Poly_BactaGrenadeMag","Poly_SquadShield_Item","Poly_MedicalDropItem","Poly_BarrierItem_Large","Poly_BarrierItem","Poly_ShieldMk2Item","Poly_ShieldItem","Poly_AmmoDropItem","Poly_z6ShieldItem","JLTS_scanner_bounty","OPTRE_Biofoam","P_SDT_dioxis_scanner","ACE_Flashlight_MX991","Poly_Grapple","ACE_Flashlight_KSF1","ACE_microDAGR","JLTS_scanner_police","ACE_SpraypaintBlack","ACE_SpraypaintBlue","ACE_SpraypaintGreen","ACE_SpraypaintRed","ACE_UAVBattery","SWLB_clone_holo_commander_armor","ls_gar_phase2Hologram_uniform","lsd_hologram_republicCommando_uniform","SWLB_clone_holo_mc_uniform","SWLB_clone_holo_uniform","lsd_hologram_bxDroid_uniform","ls_cis_b1Hologram_uniform","SWLB_clone_holo_arc_armor","SWLB_clone_holo_arc_backpack","lsd_hologram_standard_backpack","lsd_hologram_antenna_backpack","ls_cis_b1Hologram_helmet","SWLB_clone_holo_P15_helmet","SWLB_clone_holo_P1_helmet","SWLB_clone_holo_P2_helmet","ls_gar_arcHologram_helmet","lsd_hologram_arc_helmet","ls_gar_atrtDriverHologram_helmet","lsd_hologram_atrtDriver_helmet","ls_gar_desertHologram_helmet","ls_gar_barcHologram_helmet","ls_gar_phase1ArfHologram_helmet","ls_gar_phase1Hologram_helmet","lsd_hologram_commando_helmet","lsd_hologram_phase2_helmet","ls_gar_phase2Hologram_helmet","ls_gar_phase2ArfHologram_helmet","lsd_hologram_senateGuard_helmet","JLTS_DC15A_plastic","JLTS_DC15A","SWLW_DC15A","SWLW_DC15A_wooden","JLTS_DC15A_ugl_plastic","JLTS_DC15A_ugl","JLTS_DC15S","JLTS_DC15X","JLTS_DP23","JLTS_DW32S","JLTS_Z6","JLTS_DC17SA","3AS_DC15L_F","JLTS_DC15S_mag","JLTS_DC15A_mag","SWLW_DC15A_UGL_flare_red_Mag","JLTS_stun_mag_short","JLTS_stun_mag_long","SWLW_DC15A_Mag","1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","ACE_HuntIR_M203","OPTRE_1Rnd_Smoke_Grenade_shell","OPTRE_1Rnd_SmokeRed_Grenade_shell","OPTRE_1Rnd_SmokeGreen_Grenade_shell","OPTRE_1Rnd_SmokeYellow_Grenade_shell","OPTRE_1Rnd_SmokePurple_Grenade_shell","OPTRE_1Rnd_SmokeBlue_Grenade_shell","OPTRE_1Rnd_SmokeOrange_Grenade_shell","ACE_40mm_Flare_white","ACE_40mm_Flare_red","ACE_40mm_Flare_green","ACE_40mm_Flare_ir","WNZ_EMP40mm_Grenade_Magazine","OPTRE_3Rnd_Smoke_Grenade_shell","OPTRE_3Rnd_SmokeRed_Grenade_shell","OPTRE_3Rnd_SmokeGreen_Grenade_shell","OPTRE_3Rnd_SmokeYellow_Grenade_shell","OPTRE_3Rnd_SmokePurple_Grenade_shell","OPTRE_3Rnd_SmokeBlue_Grenade_shell","OPTRE_3Rnd_SmokeOrange_Grenade_shell","JLTS_DC15X_mag","JLTS_DP23_mag","JLTS_DW32S_mag","JLTS_Z6_mag","JLTS_DC17SA_mag","JLTS_EMP_mag","3AS_200Rnd_EC40_Mag","3AS_PLX1_F","JLTS_PLX1_AT","SWLW_PLX1","ls_weapon_at_plx1","SWLW_PLX1_AA","ls_weapon_aa_plx1","JLTS_DC15X_scope","3AS_Optic_DC15L","JLTS_DC17SA_flashlight","acc_flashlight","acc_pointer_IR","ACE_acc_pointer_green","3AS_Bipod_DC15L_f","3AS_JLTS_MK43_AT","3AS_JLTS_MK44_HE","3AS_JLTS_MK39_AA","JLTS_PLX1_AT_mag","JLTS_PLX1_AP_mag","SWLW_plx1_at_mag","SWLW_plx1_ap_mag","ls_mag_at_plx","ls_mag_ap_plx","SWLW_plx1_aa_mag","ls_mag_aa_plx","GD_CR_Helmet","GD_CT_Helmet","GD_SCT_Helmet","GD_CP_Helmet","GD_CS_Helmet","GD_CSM_Helmet","GD_CL_Helmet","GD_CPT_Helmet","GD_CMD_Helmet","GD_CX_Helmet","GD_CXP_Helmet","GD_CXS_Helmet","GD_CR_Uniform","GD_CT_Uniform","GD_CTmedic_Uniform","GD_CO_Uniform","GD_COmedic_Uniform","GD_Reg_Backpack","GD_Hev_Backpack","GD_Eod_Backpack","GD_Med_Backpack","GD_Rto_Backpack","GD_Rto_minipack","SWLB_clone_basic_armor","JLTS_CloneVestSuspender","SWLB_clone_specialist_armor","SWLB_clone_recon_armor","JLTS_CloneVestRecon","JLTS_CloneVestReconOfficer","SWLB_clone_recon_officer_armor","SWLB_clone_recon_nco_armor","JLTS_CloneVestReconNCO","JLTS_CloneVestOfficer","SWLB_clone_officer_armor","SWLB_clone_medic_armor","JLTS_CloneVestLieutenant","SWLB_clone_lieutenant_armor","JLTS_CloneVestKama","SWLB_clone_kama_armor","JLTS_CloneVestHolster","SWLB_clone_grenadier_armor","JLTS_CloneVestCommander","SWLB_clone_commander_armor","SWLB_clone_airborne_armor","SWLB_clone_airborne_nco_armor","985_Vest_ARC","JLTS_CloneVestARCCadet","SWLB_clone_arc_armor","JLTS_CloneVestARC","SWLB_clone_P1_HUD","SWLB_clone_P2_HUD","SWLB_clone_ARF_antenna_HUD","SWLB_CEE_Clone_Hood","SWLB_clone_rangefinder_HUD","SWLB_CEE_Clone_Scarf","SWLB_CEE_Clone_Scarf_White","ls_misc_poncho_facewear","ls_misc_poncho_partnerBlack_facewear","ls_misc_poncho_partnerWhite_facewear","ls_misc_poncho_peaceBlue_facewear","ls_misc_poncho_peaceGreen_facewear","ls_misc_poncho_peaceRed_facewear","ls_misc_poncho_sideStripeBlue_facewear","ls_misc_poncho_sideStripeBrown_facewear","ls_misc_poncho_sideStripeRed_facewear","ls_misc_poncho_sideStripeWhite_facewear","lsd_gar_p1Interior_flashlight","lsd_gar_p1Interior_hud","lsd_gar_p2Interior_flashlight","lsd_gar_p2Interior_hud","lsd_gar_arfAntenna_hud","lsd_gar_arfAntennaPressurized_hud","JLTS_CloneNVGCC","SWLB_clone_commando_nvg","SWLB_CEE_Engineer_Comms","JLTS_CloneNVGMC","SWLB_clone_ccVisor","JLTS_CloneNVG","JLTS_CloneNVGRange","JLTS_CloneNVGRange_black","JLTS_CloneNVG_spec","ls_mandalorian_rangefinder_nvg","OPTRE_NVG","lsd_gar_p1SingleHeadlamp_nvg","lsd_gar_p2SingleHeadlamp_nvg","lsd_gar_tanker_nvg","lsd_gar_artilleryGunner_nvg","lsd_gar_alphaRangefinder_nvg","lsd_gar_medicalScanner_nvg","lsd_gar_p1Commander_nvg","lsd_gar_p1MarshalCommander_nvg","lsd_gar_p1Standard_nvg","lsd_gar_p1Rangefinder_nvg","lsd_gar_p2Commander_nvg","lsd_gar_p2MarshalCommander_nvg","lsd_gar_standard_nvg","lsd_gar_standardSPC_nvg","lsd_gar_rangefinder_nvg","lsd_gar_medicalScannerSPC_nvg","ls_memefor_splinterCell_nvg","SWLB_clone_commander_binocular","SWLB_clone_commander_binocular_night","SWLB_clone_binocular","JLTS_CloneBinocular","JLTS_CloneBinocular_black","ItemMap","ItemCompass","JLTS_clone_comlink","SWLB_comlink","ACE_Altimeter","ChemicalDetector_01_watch_F","TFAR_microdagr","ItemWatch","ItemGPS","3AS_BaridumCore","Luma_Blue","Luma_Green","Luma_Red","Luma_Yellow","3AS_SmokeBlue","3AS_SmokeGreen","3AS_SmokeOrange","3AS_SmokePurple","3AS_SmokeRed","3AS_SmokeWhite","3AS_SmokeYellow","ShieldGrenade_Mag","ShieldGrenadePersonal_Mag","SquadShieldMagazine","Chemlight_blue","Chemlight_green","ACE_Chemlight_HiBlue","ACE_Chemlight_HiGreen","ACE_Chemlight_HiRed","ACE_Chemlight_HiWhite","ACE_Chemlight_HiYellow","ACE_Chemlight_IR","ACE_Chemlight_Orange","Chemlight_red","ACE_Chemlight_UltraHiOrange","ACE_Chemlight_White","Chemlight_yellow","ACE_CTS9","WNZ_EMPGrenade","B_IR_Grenade","ACE_HandFlare_Green","ACE_HandFlare_Red","ACE_HandFlare_White","ACE_HandFlare_Yellow","SmokeShellBlue","SmokeShellGreen","SmokeShellOrange","SmokeShellPurple","SmokeShellRed","SmokeShellYellow","OPTRE_M2_Smoke_Blue","OPTRE_M2_Smoke_Green","OPTRE_M2_Smoke_Orange","OPTRE_M2_Smoke_Purple","OPTRE_M2_Smoke_Red","OPTRE_M2_Smoke","OPTRE_M2_Smoke_Yellow","OPTRE_M8_Flare_Blue","OPTRE_M8_Flare_Green","OPTRE_M8_Flare","OPTRE_M8_Flare_White","OPTRE_M8_Flare_Yellow","SmokeShell","ACE_M84","ls_mag_n20_thermalDet","ls_mag_classB_thermalDet","ls_mag_classC_thermalDet","3AS_DetPack","EC01_RemoteMagazine","HX_AT_Mine_Mag","RTX_RemoteMagazine","APERSMineDispenser_Mag","SWLW_clones_spec_breach_mag","ls_mag_breach_remoteCharge","C7_Remote_Mag","C12_Remote_Mag","ls_mag_caltrops_mine","ls_mag_caltrops_dispenser","SWLW_clones_spec_demo_mag","SWLW_DetPack_remote_mag","OPTRE_FC_BubbleShield","ls_mag_detPack_remoteCharge","ls_mag_demo_remoteCharge","WNZ_EMPATMine_Range_Mag","JLTS_explosive_emp_10_mag","JLTS_explosive_emp_20_mag","JLTS_explosive_emp_50_mag","WNZ_EMPSatchelCharge_Remote_Mag","IEDLandBig_Remote_Mag","IEDUrbanBig_Remote_Mag","DemoCharge_Remote_Mag","ATMine_Range_Mag","UNSCMine_Range_Mag","M168_Remote_Mag","SatchelCharge_Remote_Mag","ClaymoreDirectionalMine_Remote_Mag","APERSBoundingMine_Range_Mag","SLAMDirectionalMine_Wire_Mag","APERSMine_Range_Mag","ACE_adenosine","ACE_ATragMX","ACE_fieldDressing","ACE_elasticBandage","ACE_packingBandage","ACE_quikclot","ACE_bloodIV","ACE_bloodIV_250","ACE_bloodIV_500","ACE_bodyBag","ACE_CableTie","ACE_DAGR","ACE_DefusalKit","ACE_EntrenchingTool","ACE_epinephrine","ACE_Fortify","ACE_M26_Clacker","ACE_Clacker","ACE_Flashlight_XL50","ACE_MapTools","MineDetector","ACE_morphine","ACE_plasmaIV","ACE_plasmaIV_250","ACE_plasmaIV_500","ACE_salineIV","ACE_salineIV_250","ACE_salineIV_500","ACE_splint","ACE_SpottingScope","ACE_Tripod","ACE_surgicalKit","ToolKit","ACE_tourniquet","ACE_wirecutter","ACE_Banana", "JLTS_Clone_jumppack_JT12_black","JLTS_Clone_jumppack_JT12",
+	
+					"985_Helmet_ARC_985_NCO","985_Helmet_P1_985_CT","985_Helmet_P2_EOD","985_Helmet_P2_985_Gundark_CT","985_Helmet_P2_985_Gundark_NCO","985_Helmet_P2_inverted","985_Helmet_P2_legacy1","985_Helmet_P2_legacy2","985_Helmet_P2_985_Medic_CT","985_Helmet_P2_985_NCO","985_Helmet_P2_985_OFF","985_Helmet_P2_985_SCT","SWLA_985th_ARF_Forest_Helmet","SWLA_985th_ARF_UCP_Helmet","SWLA_985th_ARF_Helmet","SWLA_985th_Crewman_Helmet","SWLA_985th_EOD_Helmet","SWLA_985th_Medic_Helmet","SWLA_985th_Trooper_Helmet","SWLA_985th_Veteran_Helmet","SWLA_985th_Veteran_Uniform","SWLA_985th_ARF_Forest_Uniform","SWLA_985th_ARF_UCP_Uniform","SWLA_985th_ARF_Uniform","SWLA_985th_EOD_Uniform","SWLA_985th_Crewman_Uniform","SWLA_985th_Medic_Uniform","SWLA_985th_Trooper_Uniform","985_Uniform_PL1","985_Uniform_PL2","985_Uniform_airborne","985_Uniform_985_1","985_Uniform_985_EOD","985_Uniform_legacy1","985_Uniform_legacy2","985_Uniform_985_3","985_Uniform_985_M","985_Uniform_985_4","985_Uniform_985_2","SWLA_985th_ARC_Vest",
+	
+					"SWLA_104th_ARC_Helmet","985_Helmet_P2_104_1","SWLA_104th_Pilot_Helmet","SWLA_104th_AirborneMedic_Helmet","SWLA_104th_AirborneNCO_Helmet","SWLA_104th_AirborneVeteran_Helmet","SWLA_104th_Airborne_Helmet","SWLA_104th_ARF_Helmet","SWLA_104th_P1_Helmet","SWLA_104th_Grenadier_Helmet","SWLA_104th_HeavyGunner_Helmet","SWLA_104th_HeavyTrooper_Helmet","SWLA_104th_Marksman_Helmet","SWLA_104th_Medic_Helmet","SWLA_104th_Specialist_Helmet","SWLA_104th_Trooper_Helmet","JLTS_CloneHelmetP2_104","SWLB_clone_104thTrooper_helmet","JLTS_CloneArmor_104_medic","JLTS_CloneArmor_104","JLTS_CloneArmorGrenadier_104","JLTS_CloneArmorSupport_104","SWLB_clone_104thTrooper_Uniform","SWLA_104th_ARC_Uniform","SWLA_104th_Grenadier_Uniform","SWLA_104th_HeavyGunner_Uniform","SWLA_104th_HeavyTrooper_Uniform","SWLA_104th_Marksman_Uniform","SWLA_104th_Medic_Uniform","SWLA_104th_Specialist_Uniform","SWLA_104th_Trooper_Uniform","985_Uniform_104_1","SWLA_104th_ARC_Vest","JLTS_Clone_jumppack_JT12","JLTS_Clone_jumppack_JT12_104","JLTS_Clone_jumppack_JT12_black"
+	};
+
+};
+

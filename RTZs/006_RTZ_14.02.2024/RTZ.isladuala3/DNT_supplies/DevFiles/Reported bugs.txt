@@ -1,0 +1,59 @@
+01.02.2024
+Bugs:
+- animation lag
+- vehicles preplaced in Eden can't be claimed by others than FIRST PERSON THAT SPAWNED
+- vehicles spawned by zeus can be claimed by each players (some can't though - might be vebnicle size thing)
+- vehicles spawned by curator can be scrapped by mutliple people at once (depends on vehicle, might be a matter of vehicle size which can be claimed/scrapped multiple times)
+- size for zeus was 3, for other players the size was as set via function, for AAT I had 2 cargospace, for Cracker 25
+- larger crates are either too far for interaction or they loose ace interaction ability
+- everyone can hear someone get hit
+
+
+Unresolved yet:
+Interactions are too far
+Wrecks can't be scrapped on server the way they can be claimed on local game. Same goes for claiming. + ifempty
+After destroying unclaimed vehicle action to claim it remains
+
+
+Set for testing:
+After unloading the create are searchable again - made sure to removeAction on all clients after searching
+on hit everyone hears it (confirm?)
+Vehicles can be claimed multiple times (also multiple missions)
+Animations (added remoteExec)
+
+
+Fixed:
+If empty box in area then depot doesnt work - fixed, changed trigger activation from anybody to anyplayer
+
+
+For testing:
+
+1. Spawn in Haunter hangar
+2. Search crates and move them to supply drop
+3. Spawn LAAT
+4. Check cargospace
+
+
+Setting actions for preplaced and curatoradded vehicles
+
+Local test
+
+LE - works
+RClaim - works
+RE - works
+RScrap - works
+
+MP test
+
+LE - claim prep not work, fix curator for test, its remote
+RClaim - podwójna akcja na preplaced claim, reszta ok 3pkt
+RE - podwójna akcja na preplaced scrap, reszta nie działa 0 pkt
+RScrap - podwójna akcja 2 pkt
+
+
+Final
+
+preplaced: Claim - local, Scrap - local
+
+curator: Claim - remote, Scrap - local
+

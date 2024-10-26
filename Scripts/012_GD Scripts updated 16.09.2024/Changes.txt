@@ -1,0 +1,2 @@
+- Fix server DNT_readParamsFromDB, it does read arrays but not literal values
+

@@ -1,0 +1,8 @@
+- Implemented inidbi to persistently track supplies on server. No need to update initServer.sqf manually anymore!
+- Script is now applied automatically to all valid containers and vehicles placed both in editor and spanwed by zeus! 
+- Empty crates will have their health set to 0 so empty ones don't mix up with ones containing supplies
+- Removed mission markers from supply crates and scrap as they were not updating anyway and cluttered mape too much
+- Supply script now can only be added to valid objects, either [GAR] or [CIS] containers or SW vehicles
+- You can't apply the same action to the same crate anymore
+- Maximum "mod" value (third parameter has been changed to 10)
+- Introduced medevac site on the Hautner composition

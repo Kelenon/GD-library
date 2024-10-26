@@ -1,0 +1,5 @@
+//13.09.2023
+
+- Added method for storing loadout after player's death, refer files onPlayerKilled.sqf and onPlayerRespawn.sqf
+- Added mortar to the arsenal
+- changed "access" value in description.ext class rscRespawnDialog from -1 to 0
