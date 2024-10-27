@@ -767,7 +767,8 @@ DNT_vehicleTrader = {
 						removeAllActions _target;
 						[_target] spawn DNT_vehicleTrader;
 						[_target] spawn DNT_scrapFabricator;
-
+						
+						removeAllActions vehicleSpawn;
 						[vehicleSpawn] spawn DNT_phantomSpawn;		
 								
 					} else	{hint "Insufficient scrap";};
